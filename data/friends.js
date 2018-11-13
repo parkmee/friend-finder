@@ -15,3 +15,5 @@ const peopleArr = [
         scores: [2,4,5,5,3,2,1,4,2,3]
     }
 ]
+
+module.exports = peopleArr;
