@@ -1,6 +1,5 @@
 // dependencies for express
 const express = require('express');
-const path = require('path');
 
 // express server configuration
 const app = express();
@@ -11,8 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // router configuration
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./app/routes/apiRoutes")(app);
+require("./app/routes/htmlRoutes")(app);
+//app.use('/', htmlRoutes);
+//app.use('api', apiRoutes);
 
 // listener - starts server
 app.listen(PORT, () => {
