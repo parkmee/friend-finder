@@ -12,8 +12,6 @@ app.use(express.json());
 // router configuration
 require("./app/routes/apiRoutes")(app);
 require("./app/routes/htmlRoutes")(app);
-//app.use('/', htmlRoutes);
-//app.use('api', apiRoutes);
 
 // listener - starts server
 app.listen(PORT, () => {
