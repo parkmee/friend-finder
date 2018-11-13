@@ -12,7 +12,7 @@ app.use(express.json());
 
 // router configuration
 require("./routes/apiRoutes")(app);
-//require("./routes/htmlRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // listener - starts server
 app.listen(PORT, () => {
