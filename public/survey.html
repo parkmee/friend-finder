@@ -30,7 +30,7 @@
                 <label for="name-input" class="q-label">What is your name?</label>
                 <input type="text" class="form-control" placeholder="Enter first and last name" id="name-input">
                 <label for="picture-url-input" class="q-label">Enter a link to your picture</label>
-                <input type="text" class="form-control" placeholder="Enter picture URL">
+                <input type="text" class="form-control" placeholder="Enter picture URL" id="picture-url-input">
                 <hr>
                 <h4><i class="far fa-question-circle"></i> How well do you agree with the following statements?</h4>
                 <p class="q-label">1. I find it difficult to introduce myself to other people.</p>
@@ -139,24 +139,33 @@
 
 </html>
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
 <script type="text/javascript">
-    $('.submit-btn').on('click', event => {
+    $('#submit-btn').on('click', event => {
         event.preventDefault();
+        console.log('hi');
+        console.log($('#name-input').val());
 
         const person = {
             name: $('#name-input').val().trim(),
-            photo: $('picture-url-input').val().trim(),
+            photo: $('#picture-url-input').val().trim(),
             scores: [
-                        ('#q-1').val(),
-                        ('#q-2').val(),
-                        ('#q-3').val(),
-                        ('#q-4').val(),
-                        ('#q-5').val(),
-                        ('#q-6').val(),
-                        ('#q-7').val(),
-                        ('#q-8').val(),
-                        ('#q-9').val(),
-                        ('#q-10').val(),
+                        $('#q-1').val(),
+                        $('#q-2').val(),
+                        $('#q-3').val(),
+                        $('#q-4').val(),
+                        $('#q-5').val(),
+                        $('#q-6').val(),
+                        $('#q-7').val(),
+                        $('#q-8').val(),
+                        $('#q-9').val(),
+                        $('#q-10').val(),
                     ]
         }
         console.log(person);
@@ -181,11 +190,3 @@
 
     });
 </script>
-
-// JS libraries
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
