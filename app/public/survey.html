@@ -16,7 +16,9 @@
 </head>
 
 <style type="text/css">
-    .survey-header { background-color: white; }
+    .survey-header {
+        background-color: white;
+    }
 
     .q-label {
         margin-top: 15px;
@@ -24,9 +26,13 @@
         font-weight: bolder;
     }
 
-    h4 { margin-top: 10px; }
+    h4 {
+        margin-top: 10px;
+    }
 
-    .match-tile { width: 200px; }
+    .match-tile {
+        width: 200px;
+    }
 
     .match-img-box {
         overflow: hidden;
@@ -60,19 +66,31 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" tab-index="-1" role="dialog" id="error-modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content d-flex justify-content-center">
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100 text-center my-3"><i class="far fa-check-square"></i> Complete all fields</h4>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <form>
             <div class="form-group">
                 <h4 class="form-header"><i class="fas fa-user-alt"></i> About You</h4>
                 <label for="name-input" class="q-label">What is your name?</label>
-                <input type="text" class="form-control" placeholder="Enter first and last name" id="name-input">
+                <input type="text" class="form-control q-answer" placeholder="Enter first and last name" id="name-input" required>
                 <label for="picture-url-input" class="q-label">Enter a link to your picture</label>
-                <input type="text" class="form-control" placeholder="Enter picture URL" id="picture-url-input">
+                <input type="text" class="form-control q-answer" placeholder="Enter picture URL" id="picture-url-input" required>
                 <hr>
 
                 <h4><i class="far fa-question-circle"></i> How well do you agree with the following statements?</h4>
                 <div id="form-questions"></div>
             </div>
-            <button type="button" class="btn btn-outline-dark shadow my-2" id="submit-btn">Submit</button>
+            <input type="submit" class="btn btn-outline-dark shadow my-2" id="submit-btn">
         </form>
         <hr>
         <div class="row survey-footer">
@@ -82,8 +100,6 @@
             </p>
         </div>
     </div>
-
-
 </body>
 
 </html>
@@ -113,7 +129,7 @@
         $('#form-questions').append(
             `
             <p class='q-label'>${num}. ${questionBank[i]}</p>
-            <select class="form-control" id="q-${num}">
+            <select class="form-control q-answer" id="q-${num}">
                 <option selected disabled>Select an option</option>
                 <option>1 - Strongly disagree</option>
                 <option>2 - Somewhat disagree</option>
@@ -145,10 +161,16 @@
         }
         console.log(person);
 
+        for (i in person.scores) {
+            if (person.scores[i] === null || person.name === "" || person.photo === "") {
+                console.log("complete all fields");
+                $("#error-modal").modal("show");
+                return;
+            }
+        }
+
         $.post('/api/friends', person, data => {
-            console.log(data);
             console.log(`${person.name}'s info has been added to the database`);
-            console.log(data.length);
             if (data.length > 1) {
                 $('#modal-title-text').text(`${person.name}'s Best Matches`);
             } else {
@@ -158,7 +180,6 @@
             $('#modal-body-view').empty();
 
             for (i in data) {
-                console.log(`hi ${i}`);
                 $('#modal-body-view').append(
                     `
                     <div class="match-tile row m-2">
@@ -171,7 +192,6 @@
                     </div>`
                 );
             }
-            console.log('here i go');
             $("#friend-modal").modal("show");
         });
 
