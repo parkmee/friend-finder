@@ -23,7 +23,7 @@ Click the [link](https://friend-finder-mmp.herokuapp.com/) to launch the applica
 
 ## Links
 
-https://github.com/parkmee/friend-finder
+[https://github.com/parkmee/friend-finder](https://github.com/parkmee/friend-finder)
 
 ## Authors
 
