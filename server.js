@@ -6,6 +6,8 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
+app.use(express.static(path.join(__dirname, 'public'))); // need this to run css
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
